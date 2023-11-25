@@ -1,13 +1,28 @@
-# github-notify-bot
- This bot will send push notifications and status updates on the GitHub Channel in Discord.  GitHub Notifier Bot
+# GitHub Notify Bot
+GitHub Notify Bot is a powerful tool designed to keep you informed about the latest commits from your friends and explore the commit history of any GitHub user effortlessly. Whether you're a developer, a tech enthusiast, or just curious about what your network is up to on GitHub, this bot has you covered.
+
+## Key Features
+
+### Friend Updates
+- Receive real-time notifications about the latest commits on public repositories of all your friends on the server.
+- Stay connected and never miss out on the exciting projects your network is working on.
+
+### Commit History Explorer
+- Dive into the commit history of any GitHub user with the `!github [username]` command.
+
+- Uncover insights and explore the evolution of projects over time.
+
+### User-Friendly Commands
+
+* `!list`: Display a list of available commands.
+* `!linkgithub`: Connect your GitHub account to start receiving updates.
+* `!viewgithub`: Explore your friends' latest commits.
+* `!github [username]`: Dive into the commit history of any GitHub user.
 
 
-### Start the Bot Environment with :
+## Bot Invite Link :
 ```
-.\venv\Scripts\activate
+https://discord.com/api/oauth2/authorize?client_id=1176226993105293404&permissions=8&scope=bot
 ```
 
-Set APP Token.
-
-
-#### Need to add private repos update also.
+##### To-Do List: Need to make private repos update feature also.

@@ -151,6 +151,8 @@ def discord_bot():
       # print("huzzah")
       # print(user_names)
       for user in user_names:
+        if user not in github_ids.keys():
+          continue
         url = f'{GITHUB_API_BASE_URL}/users/{github_ids[user]}/events/public'
         response = requests.get(url)
         json_data = response.json()[:5]
@@ -228,12 +230,15 @@ def discord_bot():
       for guild in client.guilds:
           default_channel = guild.system_channel  # This is the default channel where system messages are sent
           # print(default_channel)
+          member_list = []
+          for member in guild.members:
+            if member!= client.user:
+              member_list.append(member.name)
+          # print(member_list)
           if default_channel:
-            # if not check_for_updates.is_running():
               print("Checking for server updates...")
-              # threading.Timer(10.0,await check_for_updates, args=(list(github_ids.keys()), default_channel)).start()
-              await check_for_updates(list(github_ids.keys()), default_channel)
-              # check_for_updates.start(list(github_ids.keys()), default_channel)
+              # await check_for_updates(list(github_ids.keys()), default_channel)
+              await check_for_updates(member_list, default_channel)
       
       # await asyncio.gather(*task_list)
       await asyncio.sleep(900.0)
@@ -246,7 +251,7 @@ def discord_bot():
     filenames = [f.split('_') for f in filenames]
     for key, value in filenames:
       github_ids[key] = value
-    print(github_ids)
+    # print(github_ids)
 
     all_servers_task_list = [task_init(client)]
     await asyncio.gather(*all_servers_task_list)
