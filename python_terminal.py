@@ -1,12 +1,18 @@
-import os
+import json
 
-folder_path = './user_github_data'
+def find_set_difference(new_json, old_json):
+  
+  difference = [entry for entry in new_json if entry not in old_json]
 
-github_ids = {}
-filenames = [f[:-5] for f in os.listdir(folder_path) if os.path.isfile(os.path.join(folder_path, f))]
-filenames = [f.split('_') for f in filenames]
-for key, value in filenames:
-  github_ids[key] = value
+  return difference
 
-print(github_ids)
 
+lol1=[]
+lol2=[]
+with open('./lol.json', 'r') as f:
+  lol1 = json.load(f)
+
+with open('./lol2.json', 'r') as f:
+  lol2 = json.load(f)
+
+print(find_set_difference(lol1, lol2))

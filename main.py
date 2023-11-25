@@ -129,20 +129,8 @@ def update_available(file_path, json_data):
 
 def find_set_difference(new_json, old_json):
   
-  mapping = {}
-  # mapping2 = {}
+  difference = [entry for entry in new_json if entry not in old_json]
 
-  difference = []
-  for i, val in enumerate(new_json):
-    mapping[val["id"]] = 1
-  
-  for i, val in enumerate(old_json):
-    # mapping2[val["id"]] = 1
-    if mapping.get(val["id"]) == None:
-      difference.append(val)
-
-  # print(mapping2)
-  # print(mapping)
   return difference
 
 
@@ -177,10 +165,12 @@ def discord_bot():
           if update_available(file_path, json_data):            
             
             with open(file_path, 'r') as file:
-              old_data = json.load(file)[:5]
+              old_data = json.load(file)
 
             difference = find_set_difference(json_data, old_data)
 
+            # with open('./lol.json', 'r') as f:
+            #   json.dump(difference, f)
             print(difference)
 
             with open(file_path, 'w') as f:
@@ -189,9 +179,7 @@ def discord_bot():
             s = "Data retrieval Failed"
             g = ""
 
-            for i, event in enumerate(difference):
-              if i >= 5:
-                break
+            for event in (difference):
               repo_name = event["repo"]["name"]
               repo_link = event["repo"]["url"]
               commit_type = event["type"]
@@ -229,25 +217,26 @@ def discord_bot():
       # Update the last checked timestamp
       last_checked_timestamp = current_timestamp
 
-      await asyncio.sleep(15.0)
+      
 
 
   async def task_init(client):
 
     while True:
-      task_list = []
+      # task_list = []
 
       for guild in client.guilds:
           default_channel = guild.system_channel  # This is the default channel where system messages are sent
-          print(default_channel)
+          # print(default_channel)
           if default_channel:
             # if not check_for_updates.is_running():
               print("Checking for server updates...")
               # threading.Timer(10.0,await check_for_updates, args=(list(github_ids.keys()), default_channel)).start()
-              task_list.append(check_for_updates(list(github_ids.keys()), default_channel))
+              await check_for_updates(list(github_ids.keys()), default_channel)
               # check_for_updates.start(list(github_ids.keys()), default_channel)
       
-      await asyncio.gather(*task_list)
+      # await asyncio.gather(*task_list)
+      await asyncio.sleep(900.0)
 
   @client.event
   async def on_ready():
@@ -320,7 +309,8 @@ def discord_bot():
         else:
           await message.channel.send("Invalid request")
       else:
-        await message.channel.send("You said : " + usr_msg)
+        return
+        # await message.channel.send("You said : " + usr_msg)
 
   try:
     token = os.getenv("TOKEN") or ""
@@ -332,3 +322,6 @@ def discord_bot():
 
 
 discord_bot()
+
+# if __name__ == "__main__":
+#   asyncio.run(main())
