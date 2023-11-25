@@ -7,6 +7,10 @@ GitHub Notify Bot is a powerful tool designed to keep you informed about the lat
 - Receive real-time notifications about the latest commits on public repositories of all your friends on the server.
 - Stay connected and never miss out on the exciting projects your network is working on.
 
+### Periodic Checker
+
+- GitHub Notify Bot operates as a scheduled task, ensuring that it checks for the latest commits and updates on GitHub every 15 minutes.
+
 ### Commit History Explorer
 - Dive into the commit history of any GitHub user with the `!github [username]` command.
 
@@ -14,9 +18,9 @@ GitHub Notify Bot is a powerful tool designed to keep you informed about the lat
 
 ### User-Friendly Commands
 
-* `!list`: Display a list of available commands.
+* `!list`: Display a list of all users on the server.
 * `!linkgithub`: Connect your GitHub account to start receiving updates.
-* `!viewgithub`: Explore your friends' latest commits.
+* `!viewgithub`: View your registered Github ID for the bot.
 * `!github [username]`: Dive into the commit history of any GitHub user.
 
 
