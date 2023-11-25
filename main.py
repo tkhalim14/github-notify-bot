@@ -311,6 +311,7 @@ def discord_bot():
       else:
         return
         # await message.channel.send("You said : " + usr_msg)
+    else: return
 
   try:
     token = os.getenv("TOKEN") or ""
